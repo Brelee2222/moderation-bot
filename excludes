@@ -1,0 +1,23 @@
+@client.event
+async def on_message_delete(message):
+  print('de')
+  with open('snipe.txt', 'r') as f:
+    messages = list(f.read().split(', '))
+  if len(messages) >= 100:
+    del(messages[0])
+  messages.append(message)
+  with open('snipe.txt', 'w') as f:
+    print(', '.join([str(e) for e in messages]))
+    f.write(', '.join([str(e) for e in messages]))
+
+@client.command()
+async def snipe(ctx):
+  messages = []
+  with open('snipe.txt', 'r') as f:
+    for message in list(f.read().split(', ')):
+      if message.channel.id == ctx.channel.id and message.guild.id == ctx.guild.id:
+        messages.append(message)
+    for message in messages:
+      embed=discord.Embed(title=message.author, color=random.randint(0,16777215))
+      embed.set_thumbnail(url=message.author.avatar_url)
+      embed.add_field(name='Message', value=message.content, inline=False)

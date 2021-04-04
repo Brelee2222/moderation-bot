@@ -1,0 +1,1 @@
+Bot:`Command`*`about` `help` `ping`;Moderation:`(Command) (Member) (reason)`*`kick` `ban` `~`(Command)`*`snipe`;Guild:`(Command) (Member)`*`user`
